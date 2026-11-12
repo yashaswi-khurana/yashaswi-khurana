@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+@theme {
+  --color-glass: #0a0705;
+  --color-glass-2: #14100a;
+  --color-phos: #ffb000;
+  --color-phos-dim: #a87400;
+  --color-bloom: #fff3d6;
+  --color-hp: #ff4d4d;
+  --color-mp: #4dd8ff;
+  --color-rare: #b47cff;
+
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: "Archivo", "Arial Black", sans-serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: #0a0705;
+    color: #ffb000;
+    font-family: var(--font-mono);
+    font-feature-settings: "tnum" 1;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: #ffb000;
+    color: #0a0705;
+  }
+}
+
+/* ── CRT material ─────────────────────────────── */
+.crt-scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.42) 2px,
+    rgba(0, 0, 0, 0.42) 4px
+  );
+}
+
+.crt-grille {
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(255, 176, 0, 0.05) 0px,
+    rgba(255, 176, 0, 0.05) 1px,
+    rgba(0, 0, 0, 0) 1px,
+    rgba(0, 0, 0, 0) 3px
+  );
+}
+
+.crt-vignette {
+  box-shadow:
+    inset 0 0 140px 40px #0a0705,
+    inset 0 0 40px 10px rgba(10, 7, 5, 0.9);
+}
+
+.glow {
+  text-shadow:
+    0 0 6px rgba(255, 176, 0, 0.5),
+    0 0 18px rgba(255, 176, 0, 0.22);
+}
+
+.glow-hot {
+  text-shadow:
+    0 0 8px rgba(255, 243, 214, 0.65),
+    0 0 24px rgba(255, 176, 0, 0.45);
+}
+
+.glow-dim {
+  text-shadow: 0 0 8px rgba(138, 94, 0, 0.55);
+}
+
+/* ── motion ───────────────────────────────────── */
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.cursor {
+  animation: blink 1.05s steps(1) infinite;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  8% {
+    opacity: 0.94;
+  }
+  9% {
+    opacity: 1;
+  }
+  41% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0.9;
+  }
+  43% {
+    opacity: 1;
+  }
+  77% {
+    opacity: 0.97;
+  }
+  78% {
+    opacity: 0.86;
+  }
+  79% {
+    opacity: 1;
+  }
+}
+
+.flicker {
+  animation: flicker 5.5s linear infinite;
+}
+
+@keyframes sweep {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.sweep {
+  animation: sweep 1.4s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
+}
+
+@keyframes stamp {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.stamp {
+  opacity: 0;
+  animation: stamp 0.32s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+@keyframes power-on {
+  0% {
+    transform: scaleY(0.004) scaleX(1);
+    filter: brightness(6);
+    opacity: 0;
+  }
+  35% {
+    transform: scaleY(0.004) scaleX(1);
+    filter: brightness(6);
+    opacity: 1;
+  }
+  65% {
+    transform: scaleY(1) scaleX(1);
+    filter: brightness(2.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
+    filter: brightness(1);
+    opacity: 1;
+  }
+}
+
+.power-on {
+  animation: power-on 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) 1 both;
+}
+
+/* ── terminal scrollbar ───────────────────────── */
+.term-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #8a5e00 transparent;
+}
+.term-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.term-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 176, 0, 0.05);
+}
+.term-scroll::-webkit-scrollbar-thumb {
+  background: #8a5e00;
+  border: 2px solid #0a0705;
+}
+.term-scroll::-webkit-scrollbar-thumb:hover {
+  background: #ffb000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flicker,
+  .cursor,
+  .sweep,
+  .power-on,
+  .stamp {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
