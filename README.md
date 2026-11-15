@@ -1,9 +1,3 @@
-<!--
-  SETUP: save this as README.md in a repo named exactly  yashaswi-khurana/yashaswi-khurana  (public).
-  VIDEO: edit this file on github.com, drag-drop an .mp4 into the editor, and paste the
-         generated user-attachments URL on its own line where marked  <!-- VIDEO -->.
--->
-
 <div align="center">
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0A0705,100:FFB000&height=230&section=header&text=YASHASWI%20KHURANA&fontColor=FFB000&fontSize=46&fontAlignY=38&desc=PLAYER%20PROFILE%20%E2%80%A2%20LVL%2013%20%E2%80%A2%20PYTHON%20MAIN&descAlignY=60&descSize=16&animation=fadeIn" alt="Yashaswi Khurana header" width="100%"/>
